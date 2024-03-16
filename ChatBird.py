@@ -13,6 +13,7 @@ def search_database(conn, search_term, columns):
 
     results = cursor.fetchall()
     return results
+    
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="AI APP TO CHAT WITH SQL DB")
@@ -32,7 +33,8 @@ st.sidebar.subheader("Additional Options")
 option1 = st.sidebar.selectbox('Choose The Format ', ['Excel', 'CSV', 'PDF'])
 option2 = st.sidebar.selectbox('Select The Downloaded Option ', ['View', 'Download'])
 
-conn = None  # Initialize conn variable outside the try block
+#conn = None  # Initialize conn variable outside the try block
+conn = sqlite3.connect('E:/customer.db')
 
 try:
     if submit_button:
