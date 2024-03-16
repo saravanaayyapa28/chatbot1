@@ -31,8 +31,10 @@ st.sidebar.subheader("Additional Options")
 option1 = st.sidebar.selectbox('Choose The Format ', ['Excel', 'CSV', 'PDF'])
 option2 = st.sidebar.selectbox('Select The Downloaded Option ', ['View', 'Download'])
 
-if submit_button:
-    try:
+conn = None  # Initialize conn variable outside the try block
+
+try:
+    if submit_button:
         # SQLite database connection
         conn = sqlite3.connect('E:/customer.db')
 
@@ -68,6 +70,9 @@ if submit_button:
 
         else:
             st.write('Please enter a search term.')
-    finally:
-        # Close database connection
+
+finally:
+    # Close database connection in finally block to ensure it's always executed
+    if conn:
         conn.close()
+
